@@ -1,0 +1,83 @@
+﻿@model List<Library.Models.Emprestimos>
+
+<br /><br />
+<h1>Non Returned Loans</h1>
+<a asp-action="ListaTodos" class="btn btn-primary">See All Loans</a>
+<a asp-action="Cadastro" class="btn btn-success">New Loan</a>
+<br /><br />
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Book Name</th>
+                    <th>User Name</th>
+                    <th>Loan Date</th>
+                    <th>Return Date</th>
+                    <th>Returned</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+               @{int i = 1;}
+               @foreach (var emprestimo in Model)
+               {
+                <tr id="@emprestimo.Id">
+                    <th scope="row">@i</th>
+                    <td>@emprestimo.Livro.Nome</td>
+                    <td>@emprestimo.Usuario.Nome</td>
+                    <td>@emprestimo.DataEmprestimo</td>
+                    <td>@emprestimo.DataDevolucao</td>
+                    <td>@(emprestimo.Devolvido ? "Yes" : "No")</td>
+                    <th><a asp-action="Cadastro" class="btn btn-primary" asp-route-id="@(emprestimo.Id)">Edit</a></th>
+                    <th><button class="btn btn-danger" onclick="removeAlert(@emprestimo.Id)">Delete</button></th>
+                </tr>
+                i += 1;
+               }
+            </tbody>
+        </table>
+    
+
+
+
+@section Scripts
+{
+    <script src="~/lib/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script>
+        function removeAlert(emprestimoId) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this loan!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function () {
+                    var resultado = deleteEmprestimo(emprestimoId);
+                });
+        }
+
+        function deleteEmprestimo(data) {
+            $.ajax({
+                url: '/Emprestimos/DeleteEmprestimo',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            }).done(function (response) {
+                if (response == 0)
+                {
+                    swal("Deleted!", "Your loan has been deleted.", "success");
+                    $("#" + data).fadeOut(1000);
+                }
+                else
+                {
+                    swal("Erro!", "This loan cannot be deleted because it wasn't returned.", "error");
+                }
+            }.bind(this));
+        }
+    </script>
+
+}

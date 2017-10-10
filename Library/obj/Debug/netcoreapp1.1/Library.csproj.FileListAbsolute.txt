@@ -1,0 +1,18 @@
+C:\Development\Library\Library\bin\Debug\netcoreapp1.1\Library.deps.json
+C:\Development\Library\Library\bin\Debug\netcoreapp1.1\Library.runtimeconfig.json
+C:\Development\Library\Library\bin\Debug\netcoreapp1.1\Library.runtimeconfig.dev.json
+C:\Development\Library\Library\bin\Debug\netcoreapp1.1\Library.dll
+C:\Development\Library\Library\bin\Debug\netcoreapp1.1\Library.pdb
+C:\Development\Library\Library\obj\Debug\netcoreapp1.1\Library.csprojResolveAssemblyReference.cache
+C:\Development\Library\Library\obj\Debug\netcoreapp1.1\Library.AssemblyInfo.cs
+C:\Development\Library\Library\obj\Debug\netcoreapp1.1\Library.dll
+C:\Development\Library\Library\obj\Debug\netcoreapp1.1\Library.pdb
+C:\Users\lucki\Desktop\Library BKP\Library\bin\Debug\netcoreapp1.1\Library.deps.json
+C:\Users\lucki\Desktop\Library BKP\Library\bin\Debug\netcoreapp1.1\Library.runtimeconfig.json
+C:\Users\lucki\Desktop\Library BKP\Library\bin\Debug\netcoreapp1.1\Library.runtimeconfig.dev.json
+C:\Users\lucki\Desktop\Library BKP\Library\obj\Debug\netcoreapp1.1\Library.csprojResolveAssemblyReference.cache
+C:\Users\lucki\Desktop\Library BKP\Library\obj\Debug\netcoreapp1.1\Library.AssemblyInfo.cs
+C:\Users\lucki\Desktop\Library BKP\Library\obj\Debug\netcoreapp1.1\Library.dll
+C:\Users\lucki\Desktop\Library BKP\Library\obj\Debug\netcoreapp1.1\Library.pdb
+C:\Users\lucki\Desktop\Library BKP\Library\bin\Debug\netcoreapp1.1\Library.dll
+C:\Users\lucki\Desktop\Library BKP\Library\bin\Debug\netcoreapp1.1\Library.pdb

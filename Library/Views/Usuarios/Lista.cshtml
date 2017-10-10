@@ -1,0 +1,77 @@
+﻿@model List<Library.Models.Usuarios>
+
+<br /><br />
+<h1>User List</h1>
+<a asp-action="Cadastro" asp-controller="Usuarios" class="btn btn-success">New User</a>
+<br /><br />
+
+@{ 
+    int qtdUsuarios = Model.Count();
+    if(qtdUsuarios < 1)
+    {
+        <h5>No users.</h5>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 1;}
+                @foreach (var usuario in Model)
+                {
+                    <tr id="@usuario.Id">
+                        <th scope="row">@i</th>
+                        <td>@usuario.Nome</td>
+                        <td>@usuario.Email</td>
+                        <th><a asp-action="Cadastro" asp-route-id="@usuario.Id" class="btn btn-primary">Edit</a></th>
+                        <th><button onclick="removeAlert(@usuario.Id)" class="btn btn-danger">Delete</button></th>
+                    </tr>
+                    i += 1;
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+
+@section Scripts
+{
+    <script src="~/lib/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script>
+        function removeAlert(usuarioId) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this user!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function () {
+                    deleteUsuario(usuarioId);
+                    swal("Deleted!", "The user has been deleted.", "success");
+                });
+        }
+
+        function deleteUsuario(data) {
+            $.ajax({
+                url: '/Usuarios/DeleteUsuario',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            }).done(function (response) {
+                $("#" + data).fadeOut(1000);
+            }.bind(this));
+        }
+    </script>
+}

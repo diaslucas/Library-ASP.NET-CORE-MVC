@@ -1,0 +1,25 @@
+﻿@model Library.Models.Livros
+
+<br /><br />
+<h1>New Book</h1>
+<br /><br />
+
+<form role="form" method="post" asp-action="cadastro">
+    <div class="form-group">
+        <label class="control-label" for="nome">Book Name</label>
+        <input type="text" class="form-control" id="nome" placeholder="Book Name" asp-for="Nome">
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="autor">Author</label>
+        <input type="text" class="form-control" id="autor" placeholder="Author" asp-for="Autor">
+        <span asp-validation-for="Autor" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="quantidade">Quantity</label>
+        <input type="number" min="0" class="form-control" id="quantidade" placeholder="Quantity" asp-for="Quantidade">
+        <span asp-validation-for="Quantidade" class="text-danger"></span>
+    </div>
+    <a asp-action="Lista" class="btn btn-default">Back To List</a>
+    <button type="submit" class="btn btn-success">Register / Edit Book</button>
+</form>

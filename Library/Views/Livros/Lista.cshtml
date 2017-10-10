@@ -1,0 +1,86 @@
+﻿@model List<Library.Models.Livros>
+
+<br /><br />
+<h1>Book List</h1>
+<a asp-action="Cadastro" asp-controller="Livros" class="btn btn-success">New Book</a>
+<br /><br />
+
+@{ 
+    int qtdLivros = Model.Count();
+    if (qtdLivros < 1)
+    {
+        <h5>No Books</h5>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Book Name</th>
+                    <th>Author</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var livro in Model)
+                {
+                    <tr id="@livro.Id">
+                        <th scope="row">@i</th>
+                        <td>@livro.Nome</td>
+                        <td>@livro.Autor</td>
+                        <td>@livro.Quantidade</td>
+                        <td>
+                            <a asp-action="Cadastro" class="btn btn-primary" asp-route-id="@(livro.Id)">Edit</a>
+                        </td>
+                        <td><button class="btn btn-danger" onclick="removeAlert(@livro.Id)">Delete</button></td>
+                    </tr>
+
+                    i += 1;
+                }
+                </tbody>
+            </table>
+            }
+}
+
+  
+
+
+@section Scripts
+{
+    <script src="~/lib/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script>
+        function removeAlert(livroId) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this book!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function () {
+                    deleteLivro(livroId);
+                    swal("Deleted!", "Your book has been deleted.", "success");
+                });
+        }
+
+        function deleteLivro(data) {
+            $.ajax({
+                url: '/Livros/DeleteLivro',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            }).done(function (response) {
+                $("#" + data).fadeOut(1000);
+            }.bind(this));
+        }
+    </script>
+
+}
