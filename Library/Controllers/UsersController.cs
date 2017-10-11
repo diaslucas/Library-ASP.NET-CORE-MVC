@@ -21,7 +21,7 @@ namespace Library.Controllers
         }
 
         [HttpGet (Name="GetUsuarios")]
-        public IList<Usuarios> Gett()
+        public IList<Usuarios> Get()
         {
             IList<Usuarios> usuarios = this._dataService.GetUsuarios();
             return usuarios;
@@ -29,7 +29,7 @@ namespace Library.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}", Name = "GetUsuario")]
-        public Usuarios Gett(int id)
+        public Usuarios Get(int id)
         {
             Usuarios usuarios = this._dataService.GetUsuario(id);
             return usuarios;
